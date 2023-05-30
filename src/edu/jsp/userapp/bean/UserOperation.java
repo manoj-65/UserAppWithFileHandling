@@ -47,7 +47,32 @@ public class UserOperation {
 	}
 
 	public void removeUserById(int id) {
-
+		boolean flag = true;
+		FileOutputStream outputStream = null;
+		String str = "";
+		try {
+			FileInputStream inputStream = new FileInputStream(filePath);
+			Scanner readLine = new Scanner(inputStream);
+			while (readLine.hasNextLine()) {
+				String userInfo = readLine.nextLine();
+				if (userInfo.contains("" + id)) {
+					flag = false;
+					System.out.println("User with the Given Id = "+id+" Removed");
+				} else {
+					str += userInfo + "\n";
+				}
+			}
+			if (flag) {
+				System.out.println("User not Found");
+			} else {
+				outputStream = new FileOutputStream(filePath);
+				String userinfo = str.toString();
+				byte[] strToBytes = userinfo.getBytes();
+				outputStream.write(strToBytes);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
