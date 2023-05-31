@@ -32,7 +32,9 @@ public class UserOperation {
 			Scanner readLine = new Scanner(inputStream);
 			while (readLine.hasNextLine()) {
 				String userInfo = readLine.nextLine();
-				if (userInfo.contains("" + id)) {
+				String[] res = userInfo.toString().split(":-");
+				String[] result = res[1].split(",");
+				if (result[0].equals("" + id)) {
 					System.out.println(userInfo);
 					flag = false;
 				}
@@ -55,9 +57,11 @@ public class UserOperation {
 			Scanner readLine = new Scanner(inputStream);
 			while (readLine.hasNextLine()) {
 				String userInfo = readLine.nextLine();
-				if (userInfo.contains("" + id)) {
+				String[] res = userInfo.toString().split(":-");
+				String[] result = res[1].split(",");
+				if (result[0].equals("" + id)) {
 					flag = false;
-					System.out.println("User with the Given Id = "+id+" Removed");
+					System.out.println("User with the Given Id = " + id + " Removed");
 				} else {
 					str += userInfo + "\n";
 				}
